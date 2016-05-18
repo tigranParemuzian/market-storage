@@ -1,0 +1,7 @@
+{% extends 'BuildingMainBundle::layout.html.twig' %}
+
+{% block category %}
+    {% for categorys in category %}
+        <a href="{{ path('my_terms', {'slug':categorys.slug}) }}"> {{ categorys.title }}<br> </a>
+    {% endfor %}
+{% endblock category %}

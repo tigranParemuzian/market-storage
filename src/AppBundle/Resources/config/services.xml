@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+  <services>
+    <!--<service id="twig.extension.building.main" class="Building\MainBundle\Twig\Extension\PageRouteExtension" public="false">-->
+      <!--<tag name="twig.extension" />-->
+      <!--<argument type="service" id="service_container"></argument>-->
+    <!--</service>-->
+    <!-- category -->
+    <service id="main.admin.company" class="AppBundle\Admin\CompanyAdmin">
+      <tag name="sonata.admin" manager_type="orm" group="Menu" label="Company"/>
+      <argument/>
+      <argument>AppBundle\Entity\Company</argument>
+      <argument>SonataAdminBundle:CRUD</argument>
+        <!--<call method="setTemplates">-->
+            <!--<argument type="collection">-->
+                <!--<argument key="edit">AppBundle:Admin:edit_i18n.html.twig</argument>-->
+                <!--<argument key="show">SonataAdminBundle:CRUD:show.html.twig</argument>-->
+            <!--</argument>-->
+        <!--</call>-->
+    </service>
+
+    <service id="main.admin.market" class="AppBundle\Admin\MarketAdmin">
+      <tag name="sonata.admin" manager_type="orm" group="Menu" label="Market"/>
+      <argument/>
+      <argument>AppBundle\Entity\Market</argument>
+      <argument>SonataAdminBundle:CRUD</argument>
+        <!--<call method="setTemplates">-->
+            <!--<argument type="collection">-->
+                <!--<argument key="edit">AppBundle:Admin:edit_i18n.html.twig</argument>-->
+                <!--<argument key="show">SonataAdminBundle:CRUD:show.html.twig</argument>-->
+            <!--</argument>-->
+        <!--</call>-->
+    </service>
+
+    <service id="main.admin.store" class="AppBundle\Admin\StoreAdmin">
+      <tag name="sonata.admin" manager_type="orm" group="Menu" label="Store"/>
+      <argument/>
+      <argument>AppBundle\Entity\Store</argument>
+      <argument>SonataAdminBundle:CRUD</argument>
+    </service>
+
+    <service id="main.admin.enter_exit" class="AppBundle\Admin\EnterExitAdmin">
+      <tag name="sonata.admin" manager_type="orm" group="Menu" label="Enter Exit"/>
+      <argument/>
+      <argument>AppBundle\Entity\EnterExit</argument>
+      <argument>SonataAdminBundle:CRUD</argument>
+    </service>
+
+  </services>
+</container>

@@ -1,0 +1,59 @@
+{% extends 'BuildingMainBundle::layout.html.twig' %}
+{% block title %}
+    {% for art in articles %}
+        {{ art.title }}
+    {% endfor %}
+{% endblock title %}
+{% block main %}
+    {% for art in articles %}
+
+        <span style="font-weight:bold">
+     {% if art.image %}
+         <div style="float: left;">
+             <figure>
+                 <a href="{% path art.image, 'reference' %}" rel="lightbox" title="{{ art.title }}"
+                    data-lightbox="example-set">
+                     <img src="{% path art.image, 'list' %}" width="200"/> </a>
+             </figure>
+         </div>
+     {% endif %}
+            <div style="float: left;">
+                <b>    {{ art.title }}</b> <br>
+                <hr width="100%">
+                {% if art.architect %}
+                    <b> {{ 'article.architect'|trans({}, "messages") }} </b> {{ art.architect|raw }}<br>
+                {% endif %}
+                {% if art.address %}
+                    <b> {{ 'article.address'|trans({}, "messages") }} </b> {{ art.address|raw }}<br>
+                {% endif %}
+                {% if art.importance %}
+                    <b> {{ 'article.importance'|trans({}, "messages") }} </b> {{ art.importance|raw }}<br>
+                {% endif %}
+            </div>
+        <div style="clear:both ">
+            {% if art.gallery %}
+                {% for i,galleryHasMedia in art.gallery.galleryHasMedias %}
+                    <ul class="gallery">
+                        <li>
+                            <a href="{% path galleryHasMedia.media, 'reference' %}" rel="lightbox[roadtrip]"
+                               title="{{ art.title }}" data-lightbox="example-set">
+                                {% thumbnail galleryHasMedia.media, 'list' with{'title': art.title, 'alt': art.title, 'height' : '173'} %}
+                            </a>
+                        </li>
+                    </ul>
+                {% endfor %}
+            {% endif %}
+        </div>
+        </span>
+        <br>
+        <div style="clear:both">
+        {{ art.content|raw }}<br>
+    {% endfor %}
+    </div>
+{% endblock main %}
+
+{% block category %}
+    {% for categorys in  category %}
+        <a href="{{ path('my_terms', {'slug':categorys.slug}) }}">{{ categorys.title }}<br> </a>
+    {% endfor %}
+{% endblock category %}
